@@ -13,13 +13,15 @@ function show_content() {
     if (isset($_REQUEST['regnumber'])) {
         global $auth;
         $company = new Company($_REQUEST['regnumber']);
-        $_REQUEST['update'] = "";
-        $_REQUEST['pnr'] = $auth->getAuthData('pnr');
-        $obj = new Report($_REQUEST);
-        if (save_object($obj)) { // Jump back to the company page if we have saved data
-            echo '<p>' . $company->link .
-            '</p><p>' . $company->new_report_link .
-            '</p><p><a href="">Back to home</a></p>';
+        if (isset($_REQUEST['duration'])) {
+            $_REQUEST['update'] = "";
+            $_REQUEST['pnr'] = $auth->getAuthData('pnr');
+            $obj = new Report($_REQUEST);
+            if (save_object($obj)) { // Jump back to the company page if we have saved data
+                echo '<p>' . $company->link .
+                '</p><p>' . $company->new_report_link .
+                '</p><p><a href="">Back to home</a></p>';
+            }
         } else {
             add_rep($company);
         }
@@ -32,8 +34,8 @@ function add_rep($company) {
     $_SESSION['regnumber'] = $company->regnumber;
     $report = new Report($_REQUEST);
 ?>
-<script type="text/javascript" src="./js/form_validate.js"></script>
-<script type="text/javascript" src="./js/form_validate.js">
+    <script type="text/javascript" src="./js/form_validate.js"></script>
+    <script type="text/javascript" src="./js/form_validate.js">
 
         window.onbeforeunload = function() {
         if(!valid)
@@ -42,22 +44,22 @@ function add_rep($company) {
 
     </script>
     <h2>New report - <?php echo $company->name; ?></h2>
-<form method="post" action="" onSubmit="return validate(this);">
-    <div id="form">
-        <table>
-            <tr><td>
-                    <table>
+    <form method="post" action="" onSubmit="return validate(this);">
+        <div id="form">
+            <table>
+                <tr><td>
+                        <table>
                         <?php
-                        table_code("Date", "date", $report->date);
-                        table_code("Title", "title", $report->title);
+                        table_code("Date", "date", $report);
+                        table_code("Title", "title", $report);
                         ?>
                     </table></td>
-                <td align="center"><input type="button" id="clock_btn" onclick="javascript:toggleClock()" value="Starta clock" />
+                <td align="center"><input type="button" id="clock_btn" onclick="javascript:toggleClock()" value="Start timer" />
                 </td>
                 <td align="right"><table>
                         <?php
-                        table_code("Start time", "starttime", $report->starttime, 'onChange="update_duration();"');
-                        table_code("End time", "endtime", $report->endtime, 'onChange="update_duration();"');
+                        table_code("Start time", "starttime", $report, 'onChange="update_duration();"');
+                        table_code("End time", "endtime", $report, 'onChange="update_duration();"');
 
                         $totTime = (strtotime($report->endtime) - strtotime($report->starttime));
                         ?>
@@ -81,7 +83,5 @@ function add_rep($company) {
     </div>
 </form>
 <?php
-}
-
-
+                    }
 ?>

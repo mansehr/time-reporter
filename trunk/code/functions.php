@@ -34,10 +34,12 @@ function loginFunction($username = null, $status = null, &$auth = null) {
         echo '<p class="info_text_fail">Wrong username or password!</p>';
     }
 
-    echo "<label>User:<input type=\"text\" name=\"username\"></label><br/>";
+    echo "<label>User:<input type=\"text\" name=\"username\" id=\"username\"></label><br/>";
     echo "<label>Password:<input type=\"password\" name=\"password\"></label><br/>";
     echo '<input type="submit" name="login" value="Login">';
     echo "</form><br/>";
+
+    echo '<script type="text/javascript">focusLogin();</script>';
 }
 
 /* * ********ERROR MANAGEMENT ********** */
