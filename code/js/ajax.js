@@ -103,3 +103,7 @@ function hide_ajax_info() {
     obj.style.display = "none";
     obj.innerHTML = "";
 }
+
+function focusLogin() {
+    getById('username').focus();
+}

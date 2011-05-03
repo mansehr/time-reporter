@@ -12,12 +12,11 @@ $initFail = ob_get_clean();
         <link rel="stylesheet" type="text/css" media="all" href="css_main.css" />
         <script type="text/javascript" src="./js/ajax.js"></script>
         <?php
-
 // Auto include javascriptfiles on the pages
-        if(isset($_GET['page'])) {
-            $file = "./js/".$_GET['page'].".js";
-            if(file_exists($file)) {
-                echo '<script type="text/javascript" src="'.$file.'" ></script>';
+        if (isset($_GET['page'])) {
+            $file = "./js/" . $_GET['page'] . ".js";
+            if (file_exists($file)) {
+                echo '<script type="text/javascript" src="' . $file . '" ></script>';
             }
         }
         ?>
@@ -28,53 +27,50 @@ $initFail = ob_get_clean();
             &nbsp;
         </div>
         <div id="top_bar">
-            <?php echo $title; ?>
+<?php echo $title; ?>
         </div>
 
-        <?php
+<?php
         echo $initFail;
         global $auth;
         // Confirm authorization:
         if ($auth->checkAuth()) {
-            if(isset($_GET['page']) && $_GET['page'] == "logout") {
+            if (isset($_GET['page']) && $_GET['page'] == "logout") {
                 // Log user out
                 $auth->logout();
                 echo "<center>You have been logged out!<br />\n";
-                echo "<a href=\"".$_SERVER['PHP_SELF']."?page=login\">Login</a><br /></center>\n";
-            }
-            else	// Show page
-            {
+                echo "<a href=\"" . $_SERVER['PHP_SELF'] . "?page=login\">Login</a><br /></center>\n";
+            } else { // Show page
                 echo '<div id="navigation" >';
                 // Draw menu
-                ?>
+?>
                 <div class="menu"><ul>
-                    <li class="title">Menu</li>
-                    <li><a href="./?page=main">Home</a></li><br />
-                    <li><a href="./?page=list&type=comp">Companies</a></li><br />
-                    <li><a href="./?page=list&type=user">Users</a></li><br />
-                    <?php
-
+                        <li class="title">Menu</li>
+                        <li><a href="./?page=main">Home</a></li><br />
+                        <li><a href="./?page=list&type=comp">Companies</a></li><br />
+                        <li><a href="./?page=list&type=user">Users</a></li><br />
+<?php
                 global $auth;
-                if($auth->getAuthData("administrator") == 1) {
-                    ?>
+                if ($auth->getAuthData("administrator") == 1) {
+?>
                     <br />
                     <li class="title">Administration</li>
                     <li><a href="./?page=invoice">Invoices</a></li>
                     <br />
                     <li><a href="./?page=todo_main">Todo</a></li>
                     <br />
-                    <?php
+<?php
                 }
-                ?>
-                    <br />
-                    <li><a href="./?page=logout">Logout</a></li>
-                </ul></div>
-            <?php
+?>
+                <br />
+                <li><a href="./?page=logout">Logout</a></li>
+            </ul></div>
+                <?php
                 // Content
-                echo '</div>'.
-                     '<div id="content">';
-                if(isset($_GET['page'])) {
-                    switch($_GET['page']) {
+                echo '</div>' .
+                '<div id="content">';
+                if (isset($_GET['page'])) {
+                    switch ($_GET['page']) {
                         case 'php_info': phpinfo();
                             exit();
                             break;
@@ -101,21 +97,21 @@ $initFail = ob_get_clean();
                         case 'test': $file = 'test';
                             break;
 
-                        default: /*trigger_error("Wrong pagerequest".$_GET['page']);*/$file = 'main';
+                        default: /* trigger_error("Wrong pagerequest".$_GET['page']); */$file = 'main';
                             break;
                     }
-        } else {
-            $file = "main";		// Default main
-        }
-        // Load file and show it to the user
-        require_once($file.'.php');
-        show_content();
+                } else {
+                    $file = "main";  // Default main
+                }
+                // Load file and show it to the user
+                require_once($file . '.php');
+                show_content();
 
-        echo '</div>';
-    }
-} else { // Unauthorized.
-    echo "<center>You have to login to access the page.</center>";
-}
-?>
+                echo '</div>';
+            }
+        } else { // Unauthorized.
+            echo "<center>You have to login to access the page.</center>";
+        }
+                ?>
     </body>
 </html>

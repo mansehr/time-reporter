@@ -1,5 +1,5 @@
 
-timer = 0;
+var timer = 0;
 
 function toggleClock() {
     var btn = getById('clock_btn');
