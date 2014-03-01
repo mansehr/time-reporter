@@ -1,0 +1,263 @@
+/*************************************************************
+ * Created on 17 dec 2008
+ * Updated on 18 dec 2008
+ * 
+ * CSS-mall for the report project
+ * 
+ * Created by Mattias Hägglund
+ * Updated by Mattias Hägglund
+**************************************************************/
+
+a {
+    color: #333399;
+}
+
+body {
+    font: 12px Verdana, Arial, sans-serif;
+    margin: 0px;
+    background-color: #FEFEFE;
+    padding: 20px;
+}
+
+p
+{
+    text-align: left;
+    color: black;
+    font-family: arial;
+    font-size: 10px;
+}
+
+p.center
+{
+    text-align: center;
+}
+
+h1
+{
+    border-bottom: thin black solid;
+    color: #3366FF;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    font-size: 18px;
+    font-weight: bold;
+}
+h2
+{
+    font: 16px Verdana, Arial, sans-serif;
+}
+
+.mini_text {
+    
+    color: #333333;
+}
+.info_text_fail {
+    color: #CC3300;
+}
+.info_text_ok {
+    color: #33FF33;
+    font-weight: bold;
+}
+
+/*---------------------BLOCK---------------------------*/
+.float_block {
+    display: none;
+    position: absolute;
+    padding: 8px;
+    border: 1px #00CC00 solid;
+    background-color:#FFFFFF;
+    width: 500px;
+}
+
+.block {
+    margin-bottom: 10px;
+    padding: 8px;
+    /*border: thin #333333 solid;*/
+    background-color:#FFFFFF;
+    width: 900px;
+}
+
+/*---------------------TOP_BAR---------------------------*/
+#ajax_error_text {
+    display: none;
+    color: #000000;
+    background-color: #FF3333;
+    font: 12px Arial, Helvetica, sans-serif ;
+    text-align: center;
+}
+
+/*---------------------TOP_BAR---------------------------*/
+#top_bar {
+    font: 25px Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color:#000000;
+    padding-left: 90px;
+    margin: 20px 30px 20px 30px;
+    border-bottom: thick dotted #0066CC;
+}
+
+
+/*---------------------CONTENT---------------------------*/
+#content{
+    margin-left: 180px;
+}
+/*---------------------FORMS---------------------------*/
+#form .error_txt{
+    font-size: 9px;
+    color: red;
+}
+
+#form table
+{
+    border-collapse: collapse;
+    text-align: left;
+    background-color: #ffa;
+}
+
+#form td.right{
+    text-align:right;
+
+}
+
+/*---------------------LISTS---------------------------*/
+.list
+{
+    border-collapse: collapse;
+    width: 500px;
+}
+
+.list thead{
+    text-align: left;
+    background-color: #ccc;
+}
+
+.list th{
+    /*Top, right, bottom, left*/
+    padding: 3px 3px 3px 10px;
+}
+
+.list td{
+    /*Top, right, bottom, left*/
+    padding: 2px 2px 2px 4px;
+}
+.list tr{
+
+}
+
+.list tr.odd{
+    background-color: #eee;
+}
+
+.list tr.even{
+    background-color: #ddd;
+}
+
+.list tr:hover{
+    background-color: #ccc;
+}
+
+.list a {
+    display: block;
+    text-decoration: none;
+    color: #000;
+}
+
+.report_cell {
+    display: none;
+    border: 2px solid blue;
+    padding: 8px;
+    margin-bottom: 16px;
+}	 
+
+/*---------------------MENU---------------------------*/
+#navigation {
+
+}
+.menu {
+    float: left;
+    border: #9999CC dotted 2px;
+    padding: 2px 10px;
+    margin: 0px 10px 10px 30px;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.menu a, .menu .title {
+    margin: 0 2px;
+    width: 100px;
+    height: 16px;
+    display: block;
+    text-align: center;
+    border: 1px solid gray;
+    text-decoration: none;
+    color: #000;
+    background: #fff;
+}
+.menu .title {
+    border: none;
+    text-decoration: underline;
+    font-weight: bold;
+    margin: 2px;
+}
+
+.menu a:hover {
+    background: #ccc;
+    border: 1px solid gray;
+}
+
+.menu a:active {
+    background: gray;
+    border: 1px solid gray;
+    color: #fff;
+}
+
+
+/* TAB MENU */
+ul#tab_menu { 
+    margin:0;
+    padding:0;
+    list-style-type:none;
+    margin-bottom: 0px;
+    height: 30px;
+    min-width: 400px;
+    border-bottom: thin black solid;
+}
+
+ul#tab_menu li {
+    position:relative;
+    float:left;
+    margin-left: 15px;
+    padding: 5px 20px 0px 20px;
+    border: thin black solid;
+    border-top:4px solid #999;
+    text-align: center;
+
+    font-size: 16px;
+    height: 21px;
+}
+
+ul#tab_menu #active_tab {
+    border-top:4px solid #3366FF;
+    border-bottom: thin white solid;
+    font-weight: bold;
+}
+
+ul#tab_menu li:hover { 
+    border-top:4px solid #3d496a;
+}
+
+ul#tab_menu a { 
+    padding:2px 2px;
+    color: #3366FF;
+    text-decoration:none;
+}
+
+ul#tab_menu a:hover {
+    color:#3d496a;
+    border:none;
+}
+
