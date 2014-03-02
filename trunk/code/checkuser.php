@@ -44,7 +44,4 @@ if ($auth->checkAuth()) {
 	$user->setName($auth->getAuthData("name"));
 	echo 'Hello, ' . htmlspecialchars($user->getName());
 }
-else {
-	header('Location: ' . UserService::createLoginURL($_SERVER['REQUEST_URI']));
-}
 
