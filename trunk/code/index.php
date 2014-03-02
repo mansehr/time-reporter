@@ -9,7 +9,7 @@ $initFail = ob_get_clean();
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
         <title><?php echo $title; ?></title>
-        <link rel="stylesheet" type="text/css" media="all" href="static/css_main.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="css_main.css" />
         <script type="text/javascript" src="./js/ajax.js"></script>
         <?php
 // Auto include javascriptfiles on the pages
