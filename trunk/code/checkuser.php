@@ -12,7 +12,7 @@
 require_once ('config.php');
 require_once ('functions.php');
 require_once ('Auth.php');	// From pearpackage
-global $auth, $db_conf;
+global $user, $db_conf;
 
 // Connect to the database:
 $options = array('dsn' => 'mysqli://'.$db_conf['user'].':'.$db_conf['password'].
@@ -33,7 +33,18 @@ $options = array('dsn' => 'mysqli://'.$db_conf['user'].':'.$db_conf['password'].
 
 // Create the Auth object:
 $auth = new Auth('MDB2', $options, 'loginFunction');
-
 // Start the authorization:
 $auth->start();
+
+global $user;
+
+if ($auth->checkAuth()) {
+	$user = new LoginUser($auth->name);
+	$user->setAdmin($auth->getAuthData("administrator") == 1);
+	$user->setName($auth->getAuthData("name"));
+	echo 'Hello, ' . htmlspecialchars($user->getName());
+}
+else {
+	header('Location: ' . UserService::createLoginURL($_SERVER['REQUEST_URI']));
+}
 

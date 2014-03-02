@@ -9,7 +9,7 @@ $initFail = ob_get_clean();
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
         <title><?php echo $title; ?></title>
-        <link rel="stylesheet" type="text/css" media="all" href="css_main.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="static/css_main.css" />
         <script type="text/javascript" src="./js/ajax.js"></script>
         <?php
 // Auto include javascriptfiles on the pages
@@ -32,12 +32,12 @@ $initFail = ob_get_clean();
 
 <?php
         echo $initFail;
-        global $auth;
+        global $user;
         // Confirm authorization:
-        if ($auth->checkAuth()) {
+        if ($user) {
             if (isset($_GET['page']) && $_GET['page'] == "logout") {
                 // Log user out
-                $auth->logout();
+                $user->logout();
                 echo "<center>You have been logged out!<br />\n";
                 echo "<a href=\"" . $_SERVER['PHP_SELF'] . "?page=login\">Login</a><br /></center>\n";
             } else { // Show page
@@ -50,8 +50,7 @@ $initFail = ob_get_clean();
                         <li><a href="./?page=list&type=comp">Companies</a></li><br />
                         <li><a href="./?page=list&type=user">Users</a></li><br />
 <?php
-                global $auth;
-                if ($auth->getAuthData("administrator") == 1) {
+                if ($user->isAdmin()) {
 ?>
                     <br />
                     <li class="title">Administration</li>
