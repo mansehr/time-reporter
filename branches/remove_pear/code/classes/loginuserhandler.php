@@ -52,9 +52,7 @@ class LoginUserHandler extends LoginUser {
     
     private function validateLogin($username, $password) {
         $users = $this->loadByFieldValue("username", $username);
-        print_r($users);
         $user = isset($users[0]) ? $users[0] : null; 
-        echo "userpass/md5:".$user['password']."/".md5($password);
         if(isset($user['password']) && $user['password'] == md5($password)) {
             $authStr = generateRandomString();
             $user = new LoginUser($user);
