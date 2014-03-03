@@ -74,7 +74,6 @@ h2
     padding: 8px;
     /*border: thin #333333 solid;*/
     background-color:#FFFFFF;
-    width: 900px;
 }
 
 /*---------------------TOP_BAR---------------------------*/
@@ -123,37 +122,36 @@ h2
 .list
 {
     border-collapse: collapse;
-    width: 500px;
 }
 
 .list thead{
     text-align: left;
-    background-color: #ccc;
+    background-color: #aaf;
 }
 
 .list th{
     /*Top, right, bottom, left*/
-    padding: 3px 3px 3px 10px;
+    padding: 3px 10px 3px 10px;
 }
 
 .list td{
     /*Top, right, bottom, left*/
-    padding: 2px 2px 2px 4px;
+    padding: 2px 10px 2px 10px;
 }
 .list tr{
 
 }
 
 .list tr.odd{
-    background-color: #eee;
+    background-color: #eef;
 }
 
 .list tr.even{
-    background-color: #ddd;
+    background-color: #ccf;
 }
 
 .list tr:hover{
-    background-color: #ccc;
+    background-color: #eea;
 }
 
 .list a {

@@ -7,7 +7,8 @@ class LoginUser extends Object {
         $this->idField = "userid";
         $this->fields = array('username',
             'password',
-            'authstr');
+            'authstr',
+            'administrator');
 
         parent::__construct($in);
     }
