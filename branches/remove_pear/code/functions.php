@@ -34,7 +34,7 @@ function loginFunction($username = null, $status = null, &$auth = null) {
         echo '<p class="info_text_fail">Wrong username or password!</p>';
     }
 
-    echo "<label>User:<input type=\"text\" name=\"username\" id=\"username\"></label><br/>";
+    echo '<label>User:<input type="text" name="username" id="username" value="'.$_REQUEST['username'].'"></label><br/>';
     echo "<label>Password:<input type=\"password\" name=\"password\"></label><br/>";
     echo '<input type="submit" name="login" value="Login">';
     echo "</form><br/>";
@@ -115,5 +115,20 @@ function array_add(&$dest, $source) {
             $dest[$key] += $value;
         }
     }
+}
+
+/**
+ * Generate a random string, default length 32 characters
+ * 
+ * @param type $length
+ * @return string
+ */
+function generateRandomString($length = 32) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $randomString;
 }
 ?>

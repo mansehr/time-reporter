@@ -31,8 +31,10 @@ class Object extends DbHandler {
         $this->data = array();
         $this->fail_str = "";
 
-        if (!isset($this->idField)) // Default id field is id
+        // Default id field is id
+        if (!isset($this->idField)) { 
             $this->idField = "id";
+        }
 
         foreach ($this->fields as $table) {
             $this->data[$table] = "";
@@ -72,7 +74,20 @@ class Object extends DbHandler {
             $this->data[$table] = $value;
         }
     }
+    
+    /**
+     * Load from the database
+     */
+    protected function loadByFieldValue($field, $value) {
+        $q = "SELECT * FROM " . $this->defaultTable . " WHERE " . $field
+                . " = " . self::escapeCharacters($value, true) .
+                " LIMIT 1";
+        return $this->fetch_array($q);
+    }
 
+    /**
+     * Load from the database
+     */
     private function loadById() {
         $q = "SELECT * FROM " . $this->defaultTable . " WHERE " . $this->idField
                 . " = " . $this->escapeCharacters($this->data[$this->idField]) .
@@ -81,6 +96,10 @@ class Object extends DbHandler {
         $this->loadByArray($row);
     }
 
+    /**
+     * Load from initialized array
+     * @param type $data
+     */
     protected function loadByArray($data) {
         if ($data != NULL) {
             foreach ($data as $key => $value) {
@@ -113,11 +132,11 @@ class Object extends DbHandler {
         $fields = "";
         foreach ($this->fields as $column) {
             if ($this->data[$column] != "") {
-                if ($fields != "")
+                if ($fields != "") {
                     $fields .= ",";
-                else
+                } else {
                     $fields .= " SET ";
-
+                }
                 $fields .= " $column = " .
                         $this->escapeCharacters($this->data[$column]);
             }

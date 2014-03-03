@@ -1,33 +1,35 @@
 <?php
 
 
-class LoginUser {
-	private $name; // string, name of the loged in user
-	private $admin; // bool, if admin of timereport
-	
-	
-	public function __construct() {
-		$this->setName("Name");
-		$this->setAdmin(false);
-	}
-	
-	public function isAdmin() {
-		return $this->admin;
-	}
-	
-	public function setAdmin($value) {
-		$this->admin = $value;
-	}
-	
-	public function getName() {
-		return $this->name;
-	}
-	
-	public function setName($value) {
-		$this->name = $value;
-	}
-	
-	public function logout() {
-		// TODO: Perform a session cleanup and logout
-	}
+class LoginUser extends Object {
+    public function __construct($in) {
+        $this->defaultTable = "user_login";
+        $this->idField = "userid";
+        $this->fields = array('username',
+            'password',
+            'authstr');
+
+        parent::__construct($in);
+    }
+
+    public function isAdmin() {
+        return $this->administrator == 1;
+    }
+
+    public function setAdmin($value) {
+        $this->admin = $value;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($value) {
+        $this->name = $value;
+    }
+
+    public function logout() {
+        $_SESSION['auth'] = null;
+    }
+        
 }

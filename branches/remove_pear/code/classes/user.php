@@ -17,7 +17,7 @@ class User extends Object {
         $this->defaultTable = "user";
         $this->idField = "pnr";
         $this->fields = array('login',
-            'pnr',
+            'userid',
             'password',
             'name',
             'adress',
@@ -32,8 +32,8 @@ class User extends Object {
     }
 
     public function edit_user_link() {
-        global $auth;
-        if ($auth->getAuthData('pnr') == $this->pnr) {
+        global $user;
+        if ($user->id == $this->userid) {
             return '<a href="?page=add_user&link=edit_user_link&pnr=' . $this->pnr . '">Edit</a>';
         }
 

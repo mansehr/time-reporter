@@ -15,8 +15,8 @@
     <body>
         <?php
         require_once("checkuser.php");
-        global $auth;
-        if (!$auth->checkAuth()) {
+        global $user;
+        if (!$user) {
             trigger_error("User not logged in.");
             exit();
         }
@@ -86,7 +86,7 @@
 
         function userList($name) {
             $db = new DbHandler();
-            $q = "SELECT distinct login, pnr FROM user ";
+            $q = "SELECT distinct pnr FROM user ";
             if (isset($name) && $name != 'all') {
                 $q .= " WHERE name LIKE " . $db->escapeCharacters("%" . $name . "%");
             }
