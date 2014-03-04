@@ -14,6 +14,7 @@ class ContactPerson extends Object {
     public function __construct($in) {
         $this->defaultTable = "contactperson";
         $this->idField = "name";
+
         $this->fields = array('name',
             'regnumber',
             'phone',
@@ -21,6 +22,8 @@ class ContactPerson extends Object {
             'mail');
 
         parent::__construct($in);
+        
+        $this->data['typeStr'] = "ContactPerson";
     }
 
     public function getContactPersonTable() {
@@ -53,5 +56,12 @@ class ContactPerson extends Object {
         return $ret;
     }
 
+    function getEditForm() {
+        echo '<input type="hidden" name="regnumber" value="'.$this->regnumber.'" />';
+        table_code("Name", "name", $this);
+	table_code("Phone", "phone", $this);
+	table_code("Cell", "mobile", $this);
+	table_code("E-mail", "mail", $this);
+    }
 }
 ?>

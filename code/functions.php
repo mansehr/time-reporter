@@ -63,6 +63,7 @@ function error_handler($e_number, $e_message, $e_file, $e_line, $e_vars) {
 /* * ** AUTOLOAD CLASSES FROM SUBDIRECTORY *** */
 
 function __autoload($class_name) {
+    DEBUG("Loaded $class_name");
     require_once './classes/' . strtolower($class_name) . '.php';
 }
 

@@ -16,6 +16,7 @@ class User extends Object {
     public function __construct($in) {
         $this->defaultTable = "user";
         $this->idField = "pnr";
+
         $this->fields = array('login',
             'userid',
             'password',
@@ -29,6 +30,8 @@ class User extends Object {
             'administrator');
 
         parent::__construct($in);
+
+        $this->data['typeStr'] = "User";
     }
 
     public function edit_user_link() {

@@ -176,5 +176,8 @@ class Object extends DbHandler {
         return $ret;
     }
 
+    public function getEditForm() {
+        echo "No getEditForm implemented";
+    }
 }
 ?>

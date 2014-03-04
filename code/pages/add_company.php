@@ -2,9 +2,9 @@
 /* * ***********************************************************
  * Created on 17 dec 2008
  * Updated on 25 feb 2009
- * 
+ *
  * Add a company form
- * 
+ *
  * Created by David He
  * 2009-02-25 Andreas Sehr - Moved the java script to a separate file
  * ************************************************************ */
@@ -31,21 +31,19 @@ function edit_comp($obj) {
     }
 ?>
 <script type="text/javascript" src="./js/form_validate.js"></script>
-    <h2>Formulär - <?php echo $text; ?> Företag</h2>
+    <h2>Form - <?php echo $text; ?> Company</h2>
     <form method="post" onSubmit="return validate(this);">
         <input type="hidden" value="true" name="sent">
         <div id="form">
             <table>
             <?php
-            table_code("Company", "name", $obj);
-            table_code("Adress", "adress", $obj);
-            table_code("Zip code", "zipcode", $obj);
-            table_code("City", "city", $obj);
-            table_code("Company type", "companytype", $obj);
-            table_code("Registration nr", "regnumber", $obj);
+                $obj->getEditForm();
             ?>
             <tr>
-                <td><a target="_blank" href="http://allabolag.se/?what=<?php echo urlencode($_POST['name']); ?>">Sl&aring; upp f&ouml;retaget</a></td><td class="right"><input type="submit" value="<?php echo $text; ?>" /></td>
+                <td><a target="_blank" href="http://allabolag.se/?what=<?php // TODO: Save adress in db for dynamic
+                echo urlencode($_POST['name']); ?>">Look up company</a>
+                </td>
+                <td class="right"><input type="submit" value="<?php echo $text; ?>" /></td>
             </tr>
         </table>
     </div>

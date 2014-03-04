@@ -1,8 +1,16 @@
 <?php
+session_start();
 ob_start();
 require_once('checkuser.php');
 global $title;
 $initFail = ob_get_clean();
+
+if(isset($_GET['id'])) {
+    setcookie('id', $_GET['id']);
+}/* else if(isset($_COOKIE['id'])) {
+    $_GET['id'] = $_COOKIE['id'];
+}*/
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//SV" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -45,57 +53,48 @@ $initFail = ob_get_clean();
                 // Draw menu
 ?>
                 <div class="menu"><ul>
-                        <li class="title">Menu</li>
+                        <li class="title">Meny</li>
                         <li><a href="./?page=main">Home</a></li><br />
                         <li><a href="./?page=list&type=comp">Companies</a></li><br />
                         <li><a href="./?page=list&type=user">Users</a></li><br />
 <?php
                 if ($user->isAdmin()) {
 ?>
-                    <br />
+              			<!-- Admin -->
                     <li class="title">Administration</li>
                     <li><a href="./?page=invoice">Invoices</a></li>
-                    <br />
-                    <li><a href="./?page=todo_main">Todo</a></li>
-                    <br />
 <?php
                 }
 ?>
                 <br />
                 <li><a href="./?page=logout">Logout</a></li>
-            </ul></div>
-                <?php
-                // Content
-                echo '</div>' .
-                '<div id="content">';
+            </ul></div> 
+            <!-- Content -->
+            <div id="content">
+<?php
                 if (isset($_GET['page'])) {
                     switch ($_GET['page']) {
-                        case 'php_info': phpinfo();
-                            exit();
-                            break;
-
-                        case 'info_comp': $file = 'info_company';
-                            break;
-                        case 'info_user': $file = 'info_user';
-                            break;
-                        case 'list': $file = 'list';
-                            break;
-                        case 'main': $file = 'main';
+                        case 'info_comp': 
+                            $file = 'tabPage';
+                            $page = new page_company();
                             break;
                         case 'add_comp': $file = 'add_company';
-                            break;
-                        case 'add_user': $file = 'add_user';
-                            break;
+                            break; 
                         case 'add_rep': $file = 'add_report';
                             break;
-                        case 'invoice': $file = 'invoice';
+                        case 'invoice':
+                            $file = 'tabPage';
+                            $page = new page_invoice();
                             break;
-                        case 'add_contact': $file = 'add_contact';
+                        case 'add_user':        
+                        case 'info_user': 
+                        case 'list': 
+                        case 'main': 
+                        case 'edit':
+                        case 'klick': 
+                        case 'add_contact':  
+                            $file = $_GET['page'];
                             break;
-
-                        case 'test': $file = 'test';
-                            break;
-
                         default: /* trigger_error("Wrong pagerequest".$_GET['page']); */$file = 'main';
                             break;
                     }
@@ -103,14 +102,13 @@ $initFail = ob_get_clean();
                     $file = "main";  // Default main
                 }
                 // Load file and show it to the user
-                require_once($file . '.php');
-                show_content();
-
-                echo '</div>';
+                require_once("./pages/$file.php");
+                show_content();           
             }
         } else { // Unauthorized.
             echo "<center>You have to login to access the page.</center>";
         }
-                ?>
+?>
+       </div>
     </body>
 </html>
