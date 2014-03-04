@@ -9,15 +9,17 @@
  **************************************************************/
 
 /************ GLOBAL VARIABELS *********/
-$title = 'DEV SamarITen - Kontaktsystem';
+$title = 'SamarITen - Kontaktsystem';
 $contact_email = "sehr.andreas@gmail.com";
-$debug = false;
 
 $workVat = 0.25;
 $prodVat = 0.25;
-//error_reporting(E_ALL);
-//ini_set("display_errors", 1);
 
+$debug = false;
+if($debug) {
+    error_reporting(E_ALL);
+    ini_set("display_errors", 1);
+}
 /************ DATABASE *********/
 $db_conf = array(
 'host' => "localhost",

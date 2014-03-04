@@ -14,6 +14,7 @@ class Product extends Object {
     public function __construct($in) {
         $this->defaultTable = "product";
         $this->idField = "id";
+
         $this->fields = array('id',
             'producttype',
             'aprice',
@@ -23,6 +24,8 @@ class Product extends Object {
             'quantity');
 
         parent::__construct($in);
+
+        $this->data['typeStr'] = "Product";
     }
 
 }

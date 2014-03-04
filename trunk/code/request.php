@@ -7,14 +7,15 @@
  *
  * Created by Andreas Sehr
 **************************************************************/
+require_once("checkuser.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//SV" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     </head>
     <body>
         <?php
-        require_once("checkuser.php");
         global $user;
         if (!$user) {
             trigger_error("User not logged in.");
@@ -70,7 +71,7 @@
                 }
                 echo '</table>';
             } else if ($name != 'new') {
-                echo '<br /><p>Found no company with name "' . htmlentities($name) . '"</p>';
+                echo '<br /><p>Found no company with name "' . $name . '"</p>';
             }
             if ($name == 'new' || $count_companies == 0) {
                 if ($name == 'new') {
@@ -78,7 +79,7 @@
                 }
                 echo '
 			<form name="add_company" action="?page=add_comp" method="post">
-			 <input type="hidden" name="name" value="' . htmlentities($name) . '" />
+			 <input type="hidden" name="name" value="' . $name . '" />
 			 <a href="javascript:get_by_id(\'add_company\').submit();">Create new company.</a>
 			 </form>';
             }
@@ -127,7 +128,7 @@
 
         function report($id) {
             $report = new Report($id);
-            echo nl2br(htmlentities($report->text));
+            echo nl2br($report->text) /*.nl2br(htmlentities($report->text))*/;
         }
         ?>
 

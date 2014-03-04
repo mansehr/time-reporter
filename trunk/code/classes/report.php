@@ -17,6 +17,7 @@ class Report extends Object {
     public function __construct($in) {
         $this->defaultTable = "report";
         $this->idField = "id";
+
         $this->fields = array('date',
             'starttime',
             'duration',
@@ -30,6 +31,7 @@ class Report extends Object {
 
         parent::__construct($in);
         $this->setDefault();
+        $this->data['typeStr'] = "Report";
     }
 
     private function setDefault() {

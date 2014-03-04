@@ -22,6 +22,14 @@ class DbHandler
             self::$db = new mysqli($db_conf['host'], $db_conf['user'],
                                    $db_conf['password'], $db_conf['dbname'])
                     or die("Couldn't connect to database: " . mysqli_error());
+            
+            if (self::$db ->connect_errno) {
+                echo "Failed to connect to MySQL! (errno: " . self::$db ->connect_errno . ") ";
+                global $debug;
+                if($debug) {
+                    echo self::$db ->connect_error;
+                }
+            }
         }
     }
 

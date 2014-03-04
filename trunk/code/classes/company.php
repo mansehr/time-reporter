@@ -29,6 +29,7 @@ class Company extends Object {
     public function __construct($in) {
         $this->defaultTable = "company";
         $this->idField = "regnumber";
+
         $this->fields = array('name',
             'adress',
             'city',
@@ -40,13 +41,14 @@ class Company extends Object {
 
         parent::__construct($in);
 
+        $this->data['typeStr'] = "Company";
         if (empty($this->data['lastchange']))
             $this->data['lastchange'] = "CURRENT_TIMESTAMP";
     }
 
     public function __get($name) {
         if ($name == "show_link") {
-            return "<a href='?page=info_comp&id=" . $this->regnumber . "'>" . htmlentities($this->name) . "</a>";
+            return "<a href='?page=info_comp&id=" . $this->regnumber . "'>" . $this->name . "</a>";
         }
         if ($name == "new_report_link") {
             return '<a href="?page=add_rep&regnumber=' . $this->regnumber . '">Add report</a>';
@@ -134,5 +136,17 @@ class Company extends Object {
         $persons = array();
     }
 
+    function getEditForm() {
+        table_code("Company", "name", $this);
+        table_code("Adress", "adress", $this);
+        table_code("Zip code", "zipcode", $this);
+        table_code("City", "city", $this);
+        table_code("Company type", "companytype", $this);
+        table_code("Registration nr", "regnumber", $this);
+
+        echo '<tr><td><a target="_blank" href="http://allabolag.se/?what='. // Store this in db
+                urlencode((isset($_REQUEST['name'])?$_REQUEST['name']:$this->name)).
+              '">Look up company</a></td></tr>';
+    }
 }
 ?>
